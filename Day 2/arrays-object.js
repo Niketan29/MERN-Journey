@@ -123,5 +123,96 @@ const groupByCategory = (products) => {
 console.log(groupByCategory(products));
 
 
-//
+//9
+const obj1 = {
+    name: "Niketan",
+    age: 23
+}
 
+const obj2 = {
+    name: "Ram",
+    age: 22
+}
+
+const mergeObjects = (obj1, obj2) => {
+    return { ...obj1, ...obj2 }
+}
+console.log(mergeObjects(obj1, obj2))
+
+
+
+//10
+const deepClone = (obj) => {
+    return JSON.parse(JSON.stringify(obj))
+}
+
+const player = {
+    name: "Virat",
+    jNo: 18,
+    profile: { Country: "India" }
+}
+
+const copyPlayer = deepClone(player);
+
+copyPlayer.profile.Country = "USA";
+
+console.log(player.profile.Country)
+console.log(copyPlayer.profile.Country)
+
+
+//11
+const getNestedValues = (obj, path) => {
+    const keys = path.split(".");
+    let result = obj;
+
+    for (let i = 0; i < keys.length; i++) {
+        result = result[keys[i]];
+
+        if (result === undefined) {
+            return undefined
+        }
+    }
+    return result
+}
+
+const person = {
+    profile: {
+        address: {
+            city: "Mumbai"
+        }
+    }
+};
+
+console.log(getNestedValues(person, "profile.address.city"));
+console.log(getNestedValues(person, "profile.address.pincode"));
+
+
+
+//12
+const orders = [
+    { id: 1, user: "Niketan", total: 500, status: "delivered" },
+    { id: 2, user: "Riddhi", total: 1200, status: "pending" },
+    { id: 3, user: "Niketan", total: 800, status: "pending" },
+    { id: 4, user: "Aman", total: 300, status: "delivered" },
+];
+
+const totalRevenue = orders.reduce((sum, order) => sum + order.total, 0);
+
+const pendingOrders = orders.filter((order) => order.status === "pending");
+
+const deliveredOrders = orders.filter((order) => order.status === "delivered");
+
+const revenueByUser = orders.reduce((acc,order)=>{
+    if(acc[order.user]){
+        acc[order.user] = acc[order.user] + order.total;
+    }
+    else{
+        acc[order.user] = order.total;
+    }
+    return acc;
+},{})
+
+console.log("totalRevenue:", totalRevenue);
+console.log("pendingOrders:", pendingOrders);
+console.log("deliveredOrders:", deliveredOrders);
+console.log("revenueByUser:", revenueByUser);
