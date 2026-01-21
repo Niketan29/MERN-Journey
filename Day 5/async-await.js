@@ -47,14 +47,14 @@ const fetchUser1 = async (username) => {
 
     const response = await fetch(`https://api.github.com/users/${username}`);
     
-    if(!response.ok){
-        throw new Error("Something went wrong");
-    }
     if(response.status===403){
         throw new Error("Rate limit exceeded. Try again later");
     }
     if(response.status===404){
         throw new Error("User not found");
+    }
+    if(!response.ok){
+        throw new Error("Something went wrong");
     }
     
     const data = await response.json();
@@ -84,14 +84,14 @@ const fetchUser2 = async (username) => {
 
     const response = await fetch(`https://api.github.com/users/${username}`);
     
-    if(!response.ok){
-        throw new Error("Something went wrong");
-    }
     if(response.status===403){
         throw new Error("Rate limit exceeded. Try again later");
     }
     if(response.status===404){
         throw new Error("User not found");
+    }
+    if(!response.ok){
+        throw new Error("Something went wrong");
     }
     
     const data = await response.json();
