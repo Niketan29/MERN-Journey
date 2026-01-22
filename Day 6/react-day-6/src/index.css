@@ -1,0 +1,89 @@
+.userList {
+  width: 100%;
+  max-width: 900px;
+  margin: 40px auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  padding: 10px;
+}
+
+.userCard {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 14px;
+  padding: 18px;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+.image img {
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  border: 2px solid #2563eb;
+  object-fit: cover;
+}
+
+.info h2 {
+  font-size: 18px;
+  margin-bottom: 4px;
+  color: #111;
+}
+
+.info h4 {
+  font-size: 13px;
+  color: gray;
+  margin-bottom: 10px;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.skill {
+  font-size: 12px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  background: #f3f4f6;
+  color: #333;
+}
+
+.info button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background: #2563eb;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.info button:hover {
+  background: #1d4ed8;
+  transform: scale(1.03);
+}
+
+@media (max-width: 700px) {
+  .userList {
+    grid-template-columns: 1fr;
+  }
+}
+
+#header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#footer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
