@@ -1,9 +1,9 @@
-const fetchApi = async (id) => {
+const fetchApi = async () => {
     try {
-        const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`);
+        const response = await fetch(`https://jsonplaceholder.typicode.com/users`);
 
         if (!response.ok) {
-            throw new Error("Something went wrong...")
+            throw new Error("Failed to fetch users...")
         }
         const data = await response.json();
 
