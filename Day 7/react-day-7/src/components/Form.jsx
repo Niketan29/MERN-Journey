@@ -5,48 +5,49 @@ const Form = () => {
   const [email, setEmail] = useState("");
   const [role, setRole] = useState("");
   const [bio, setBio] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
-      e.preventDefault();
-      const user = { fullName, email, role, bio };
+    e.preventDefault();
 
-    if (fullName == "" || email == "") {
-      alert("Full Name or Email can not be empty");
-    } else {
-      alert("User Regitered Successfully");
-      console.log(user);
+    if (fullName === "" || email === "") {
+      setError("Full name and Email are required");
+      return;
     }
 
+    setError("");
 
+    const user = { fullName, email, role, bio };
+    console.log(user);
+    alert("User Registered Successfully");
   };
 
   const handleChange = (e) => {
-    if (e.target.name === "fullName") {
-      setFullName(e.target.value);
-    }
-    if (e.target.name === "email") {
-      setEmail(e.target.value);
-    }
-    if (e.target.name === "bio") {
-      setBio(e.target.value);
-    }
-    if (e.target.name === "role") {
-      setRole(e.target.value);
-    }
+    const { name, value } = e.target;
+
+    if (name === "fullName") setFullName(value);
+    if (name === "email") setEmail(value);
+    if (name === "role") setRole(value);
+    if (name === "bio") setBio(value);
+
+    if (error) setError("");
   };
 
   const handleReset = () => {
     setFullName("");
     setEmail("");
-    setBio("");
     setRole("");
+    setBio("");
+    setError("");
   };
 
   return (
-    <>
-      <div id="container">
+    <div className="wrapper">
+      <div className="formBox">
+        <h2>Register Form</h2>
+
         <form onSubmit={handleSubmit}>
-          <label htmlFor="fullName">Enter Full Name : </label>
+          <label htmlFor="fullName">Enter Full Name :</label>
           <input
             type="text"
             name="fullName"
@@ -55,7 +56,7 @@ const Form = () => {
             onChange={handleChange}
           />
 
-          <label htmlFor="email">Enter Email : </label>
+          <label htmlFor="email">Enter Email :</label>
           <input
             type="email"
             name="email"
@@ -64,6 +65,7 @@ const Form = () => {
             onChange={handleChange}
           />
 
+          <label htmlFor="role">Select Role :</label>
           <select name="role" id="role" value={role} onChange={handleChange}>
             <option value="" disabled>
               Select Role
@@ -73,6 +75,7 @@ const Form = () => {
             <option value="fullstack">Full-Stack</option>
           </select>
 
+          <label htmlFor="bio">Bio :</label>
           <textarea
             name="bio"
             id="bio"
@@ -80,12 +83,34 @@ const Form = () => {
             onChange={handleChange}
           ></textarea>
 
-          <input type="submit" value="Submit" />
+          {error && <p className="error">{error}</p>}
 
-          <input type="button" value="Reset" onClick={handleReset} />
+          <div className="btns">
+            <input type="submit" value="Submit" />
+            <input type="button" value="Reset" onClick={handleReset} />
+          </div>
         </form>
       </div>
-    </>
+
+      <div className="previewBox">
+        <h2>Preview</h2>
+
+        <div className="previewCard">
+          <p>
+            <b>Name:</b> {fullName || "-"}
+          </p>
+          <p>
+            <b>Email:</b> {email || "-"}
+          </p>
+          <p>
+            <b>Role:</b> {role || "-"}
+          </p>
+          <p>
+            <b>Bio:</b> {bio || "-"}
+          </p>
+        </div>
+      </div>
+    </div>
   );
 };
 
