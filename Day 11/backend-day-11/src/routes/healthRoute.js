@@ -1,0 +1,16 @@
+const express = require('express');
+const router = express.Router();
+
+router.get("/",(req,res)=>{
+    res.json({
+        message : "API Running"
+    })
+})
+router.get("/health",(req,res)=>{
+    res.status(200).json({
+        status : "OK",
+        uptime : process.uptime()
+    })
+})
+
+module.exports=router;
